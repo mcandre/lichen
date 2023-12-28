@@ -148,7 +148,9 @@ That should enable automation, for larger CI/CD systems that want to kick off pr
 
 As an aside, worse still for any hypothetical CI/CD, 100% sed pipeline, is the fact that exit codes do not appear to persist oustide of the sed editing command, nor does an explicit `exit` non-zero trigger termination of sed script processing. Any error handling for failing tasks, is currently a manual coding exercise, using error log entries to bring attention to the problem. Something that tends to get drowned out in large CI/CD pipelines with a lot of useless noise. Imagine having to debug an application build, with the build script continuing to run past the error, and only the chance of a corresponding error message buried deep in the logs! That's why exit code semantics are so important for production grade software components. But treating failing editing command `e` flag commands as sed application termination events, is something that GNU, BSD, and POSIX could theoretically agree to begin doing someday. Who knows, could be a one line change!
 
-In principle, task trees could be constructed by chaining together multiple `.lichen.d/<script>` files together, using `s/^...$/gsed.../ep` editing commands to form task aggregates. If a hellish DevOps team out there has to debug a *sed* based build system, might as well keep it as organized as possible.
+In principle, task trees could be constructed by chaining together multiple `.lichen.d/<script>` files together, using `s/^...$/gsed.../ep` editing commands to form task aggregates. If a hellish DevOps team out there has to debug a sed based build system, might as well keep it as organized as possible.
+
+For all the warts and fragility of common build systems like `make`, lichen does miss out on some surprisingly convenient features. A wrapping *awk* script could use associative arrays as logical sets, in order to deduplicate redundant task invocations from `test lint lint lint`... to just `test lint`. And if one does ever implement task trees, then deduplicating redundant task dependencies shared by different parent tasks, becomes a performance concern. Lulz.
 
 # SEE ALSO
 
