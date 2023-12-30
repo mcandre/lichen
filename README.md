@@ -159,6 +159,7 @@ For all the warts and fragility of common build systems like `make`, lichen does
 * [bb](https://github.com/mcandre/bb), a build system for (g)awk projects
 * [beltaloada](https://github.com/mcandre/beltaloada), a guide to writing build systems for (POSIX) sh
 * [Gradle](https://gradle.org/), a build system for JVM projects
+* [jelly](https://github.com/mcandre/jelly), a JSON task runner
 * [lake](https://luarocks.org/modules/steved/lake), a Lua task runner
 * [Mage](https://magefile.org/), a task runner for Go projects
 * [npm](https://www.npmjs.com/), [Grunt](https://gruntjs.com/), Node.js task runners
