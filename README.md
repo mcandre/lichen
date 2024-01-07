@@ -111,7 +111,7 @@ After the `test` task, we have a more intricate `lint` task:
 ## Creating Complex Taks
 
 ```
-s/^lint$/find . -iname '*.sed' -not -perm 0644 -exec echo 'warn: strange permissions:' '{}' \\;/ep
+s/^lint$/find . -iname '*.sed' -not -perm 0644 -print | xargs -n 1 echo 'warn: strange permissions:'/ep
 ```
 
 This rudimentary `lint` task uses the classic UNIX `find` utility to look for sed script filenames matching `*.sed` in the currend directory and below. Any sed scripts that both feature a `.sed` file extension and have chmod file permissions other than `0644` (octal), will generate a linter warning.
@@ -120,7 +120,7 @@ That's just a good habit to follow in UNIX, reserving file extensions on scripts
 
 A shebang should also be present in executable application scripts and removed from library scripts for the same reason. We leave implementation of sed shebang linter checks to [other systems](https://github.com/mcandre/stank).
 
-Getting back to sed, review the precise syntax for this example lint task. Notice that the `\;` usually indicated for terminating UNIX `find` commands, is escaped as `\\;`. Many sed editing command characters such as forward slash (`/`), back slash (`\`), caret (`^`), and dollar (`$`), just to name a few of these, will require additional back slashes.
+Getting back to sed, review the precise syntax for this example lint task. Many sed editing command characters such as forward slash (`/`), back slash (`\`), caret (`^`), and dollar (`$`), just to name a few of these, will require additional back slashes.
 
 Throw in escapes for any quoting, and the commands can get messy in a hurry.
 
