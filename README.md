@@ -29,7 +29,9 @@ test
 info: pass
 
 lint
-warn: strange permissions: ./bad.sed
+./bad.sed
+warn: strange permissions: bad.sed
+
 (Control+D)
 
 $
@@ -41,8 +43,9 @@ When you're finished, press `Control+D` to terminate the lichen session.
 
 # REQUIREMENTS
 
-* a UNIX environment with [coreutils](https://www.gnu.org/software/coreutils/) / [base](http://ftp.freebsd.org/pub/FreeBSD/releases/) / [macOS](https://www.apple.com/macos) / [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) / etc.
+* GNU or BSD [findutils](https://en.wikipedia.org/wiki/Find_(Unix))
 * [GNU sed](https://www.gnu.org/software/sed/manual/sed.html) 4.2+
+* POSIX compatible [sh](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/sh.html)
 
 # CONFIGURATION
 
@@ -111,10 +114,12 @@ After the `test` task, we have a more intricate `lint` task:
 ## Creating Complex Taks
 
 ```
-s/^lint$/find . -iname '*.sed' -not -perm 0644 -print | xargs -n 1 echo 'warn: strange permissions:'/ep
+s/^lint$/find . -iname '*.sed' -not -perm 0644 -print -execdir echo 'warn: strange permissions:' "{}" +/ep
 ```
 
-This rudimentary `lint` task uses the classic UNIX `find` utility to look for sed script filenames matching `*.sed` in the currend directory and below. Any sed scripts that both feature a `.sed` file extension and have chmod file permissions other than `0644` (octal), will generate a linter warning.
+This rudimentary `lint` task uses the GNU or BSD `find` utility to look for sed script filenames matching `*.sed` in the current directory tree.
+
+Any sed scripts that both feature a `.sed` file extension and have chmod file permissions other than `0644` (octal), will generate a linter warning.
 
 That's just a good habit to follow in UNIX, reserving file extensions on scripts for libraries, and reserving extensionless, executable chmod bits for applications. The practice applies to shell scripts, sed files, awk, Perl, Python, Ruby, and essentially any interpreted programming language script. The *metadata* about the script should help to reinforce the *intent* of the script, in case the author is unavailable.
 

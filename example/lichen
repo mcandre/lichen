@@ -6,6 +6,6 @@
 
 s/^test$/echo 'info: pass'/ep
 
-s/^lint$/find . -iname '*.sed' -not -perm 0644 -print | xargs -n 1 echo 'warn: strange permissions:'/ep
+s/^lint$/find . -iname '*.sed' -not -perm 0644 -print -execdir echo 'warn: strange permissions:' "{}" +/ep
 
 s/^help$/printf 'usage\:\n<task>\n<task>\n<task>\n...\n<ctrl-d>\n\ntasks:\n'; gsed -nE 's\/s\\\/\\^([^$]+)\\$.*\$\/* \\1\/p' <.\/lichen/ep
