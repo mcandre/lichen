@@ -167,6 +167,7 @@ For all the warts and fragility of common build systems like `make`, lichen does
 * [jelly](https://github.com/mcandre/jelly), a JSON task runner
 * [lake](https://luarocks.org/modules/steved/lake), a Lua task runner
 * [Mage](https://magefile.org/), a task runner for Go projects
+* [mian](https://github.com/mcandre/mian), a task runner for (Chicken) Scheme Lisp
 * [npm](https://www.npmjs.com/), [Grunt](https://gruntjs.com/), Node.js task runners
 * [POSIX make](https://pubs.opengroup.org/onlinepubs/009695299/utilities/make.html), a task runner standard for C/C++ and various other software projects
 * [Rake](https://ruby.github.io/rake/), a task runner for Ruby projects
