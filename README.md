@@ -114,7 +114,7 @@ After the `test` task, we have a more intricate `lint` task:
 ## Creating Complex Taks
 
 ```
-s/^lint$/find . -iname '*.sed' -not -perm 0644 -print -execdir echo 'warn: strange permissions:' "{}" +/ep
+s/^lint$/find . -type f -iname '*.sed' -not -perm 0644 -print -execdir echo 'warn: strange permissions:' "{}" +/ep
 ```
 
 This rudimentary `lint` task uses the GNU or BSD `find` utility to look for sed script filenames matching `*.sed` in the current directory tree.
