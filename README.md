@@ -166,6 +166,7 @@ For all the warts and fragility of common build systems like `make`, lichen does
 * [booty](https://github.com/mcandre/booty?tab=readme-ov-file) for JS/Node.js/altJS
 * [Gradle](https://gradle.org/), a build system for JVM projects
 * [jelly](https://github.com/mcandre/jelly), a JSON task runner
+* [lair](https://github.com/mcandre/lair), a lightweight task runner
 * [lake](https://luarocks.org/modules/steved/lake), a Lua task runner
 * [Leiningen](https://leiningen.org/) + [lein-exec](https://github.com/kumarshantanu/lein-exec), a Clojure task runner
 * [Mage](https://magefile.org/), a task runner for Go projects
